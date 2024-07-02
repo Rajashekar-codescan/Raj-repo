@@ -43,6 +43,7 @@ jobs:
                     login: ${{ secrets.CODESCAN_AUTH_TOKEN }}
                     organization: test-org1
                     projectKey: test-Sf-data
+                     codeScanUrl: https://app.codescan.io
             -   name: Upload SARIF file
                 uses: github/codeql-action/upload-sarif@v2
                 with:
