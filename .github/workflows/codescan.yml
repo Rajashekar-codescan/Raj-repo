@@ -1,50 +1,60 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# This workflow requires that you have an existing account with codescan.io
-# For more information about configuring your workflow,
-# read our documentation at https://github.com/codescan-io/codescan-scanner-action
-name: CodeScan
-
+name: CI
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "master" ]
-  schedule:
-    - cron: '22 7 * * 3'
-
-permissions:
-  contents: read
-
+    branches: 
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
 jobs:
-    CodeScan:
-        permissions:
-          contents: read # for actions/checkout to fetch code
-          security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-          actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout repository
-                uses: actions/checkout@v4
-            -   name: Cache files
-                uses: actions/cache@v3
-                with:
-                    path: |
-                        ~/.sonar
-                    key: ${{ runner.os }}-sonar
-                    restore-keys: ${{ runner.os }}-sonar
-            -   name: Run Analysis
-                uses: codescan-io/codescan-scanner-action@5b2e8c5683ef6a5adc8fa3b7950bb07debccce12
-                with:
-                    login: ${{ secrets.CODESCAN_AUTH_TOKEN }}
-                    organization: test-org1
-                    projectKey: test-Sf-data
-                     codeScanUrl: https://app.codescan.io
-            -   name: Upload SARIF file
-                uses: github/codeql-action/upload-sarif@v2
-                with:
-                    sarif_file: codescan.sarif
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Cache files
+        uses: actions/cache@v2
+        with:
+            path: |
+                ~/.sonar
+            key: ${{ runner.os }}-sonar
+            restore-keys: ${{ runner.os }}-sonar
+      - name: Run Codescan On Push
+        if: github.event_name == 'push'
+        uses: Rajashekar-codescan/codescan-scanner-action@github1
+        with: 
+          scanChangedFilesOnly: true
+          organization: test-org1
+          projectKey: test-Sf-data
+          codeScanUrl: https://app.codescan.io
+          login: ${{ secrets.codescan_token_preview }}
+          generateSarifFile: true
+      - name: Run Codescan On PR
+        if: github.event_name == 'pull_request'
+        uses: Rajashekar-codescan/codescan-scanner-action@github1
+        with: 
+          scanChangedFilesOnly: true
+          organization: test-org1
+          projectKey: test-Sf-data
+          codeScanUrl: https://app.codescan.io
+          login: ${{ secrets.codescan_token_preview }}
+          generateSarifFile: true
+          args: |
+            sonar.pullrequest.branch=${{github.head_ref}}
+            sonar.pullrequest.base=${{github.base_ref}}
+            sonar.pullrequest.key=${{github.event.number}}
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: codescan.sarif
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: codescan.sarif
+          path: codescan.sarif
