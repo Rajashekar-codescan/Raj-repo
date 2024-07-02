@@ -33,7 +33,7 @@ jobs:
           organization: test-org1
           projectKey: test-Sf-data
           codeScanUrl: https://app.codescan.io
-          login: ${{ secrets.codescan_token_preview }}
+          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
           generateSarifFile: true
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
@@ -43,7 +43,7 @@ jobs:
           organization: test-org1
           projectKey: test-Sf-data
           codeScanUrl: https://app.codescan.io
-          login: ${{ secrets.codescan_token_preview }}
+          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
           generateSarifFile: true
           args: |
             sonar.pullrequest.branch=${{github.head_ref}}
