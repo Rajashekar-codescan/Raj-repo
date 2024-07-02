@@ -27,7 +27,7 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar
       - name: Run Codescan On Push
         if: github.event_name == 'push'
-        uses: Rajashekar-codescan/codescan-scanner-action@github1
+        uses: Rajashekar-codescan/codescan-scanner-action@github2
         with: 
           scanChangedFilesOnly: true
           organization: test-org1
@@ -37,7 +37,7 @@ jobs:
           generateSarifFile: true
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
-        uses: Rajashekar-codescan/codescan-scanner-action@github1
+        uses: Rajashekar-codescan/codescan-scanner-action@github2
         with: 
           scanChangedFilesOnly: true
           organization: test-org1
