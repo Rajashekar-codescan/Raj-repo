@@ -32,8 +32,7 @@ jobs:
           scanChangedFilesOnly: true
           organization: test-org1
           projectKey: test-Sf-data
-          codeScanUrl:
-https://app.codescan.io
+          codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token_preview }}
           generateSarifFile: true
       - name: Run Codescan On PR
@@ -41,10 +40,9 @@ https://app.codescan.io
         uses: Rajashekar-codescan/codescan-scanner-action@github1
         with: 
           scanChangedFilesOnly: true
-          organization:test-org1
+          organization: test-org1
           projectKey: test-Sf-data
-          codeScanUrl:
-https://app.codescan.io
+          codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token_preview }}
           generateSarifFile: true
           args: |
