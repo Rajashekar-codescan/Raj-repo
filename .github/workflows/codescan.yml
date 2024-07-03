@@ -1,17 +1,9 @@
 name: CI
 on:
   push:
-    branches:
-      - '*'
-    paths-ignore:
-      - src/test/java/**
-      - target/**
+    branches: [master]
   pull_request:
-    branches: 
-      - '*'
-    paths-ignore:
-      - src/test/java/**
-      - target/**
+    branches: '*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,34 +19,30 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar
       - name: Run Codescan On Push
         if: github.event_name == 'push'
-        uses: Rajashekar-codescan/codescan-scanner-action@github1
-        with: 
-          scanChangedFilesOnly: true
+        uses: Rajashekar-codescan/codescan-scanner-action@github2
+        with:
+          codeScanUrl: https://app.codescan.io/
           organization: test-org1
           projectKey: test-Sf-data
-          codeScanUrl: https://app.codescan.io
-          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
+          login: ${{ secrets.codescan_token }}
           generateSarifFile: true
+          failOnRedQualityGate: false
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
-        uses: Rajashekar-codescan/codescan-scanner-action@github1
-        with: 
-          scanChangedFilesOnly: true
+        uses: Rajashekar-codescan/codescan-scanner-action@github2
+        with:
+          codeScanUrl: https://app.codescan.io/
           organization: test-org1
           projectKey: test-Sf-data
-          codeScanUrl: https://app.codescan.io
-          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
+          login: ${{ secrets.codescan_token }}
           generateSarifFile: true
+          failOnRedQualityGate: false
+          scanChangedFilesOnly: true
           args: |
             sonar.pullrequest.branch=${{github.head_ref}}
             sonar.pullrequest.base=${{github.base_ref}}
             sonar.pullrequest.key=${{github.event.number}}
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: codescan.sarif
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: codescan.sarif
-          path: codescan.sarif
