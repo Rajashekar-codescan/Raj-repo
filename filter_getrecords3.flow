@@ -11,12 +11,6 @@
           </value>
         </processMetadataValues>
         <processMetadataValues>
-          <name>CanvasMode</name>
-          <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-          </value>
-        </processMetadataValues>
-        <processMetadataValues>
           <name>OriginBuilderType</name>
           <value>
             <stringValue>LightningFlowBuilder</stringValue>

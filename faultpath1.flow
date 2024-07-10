@@ -214,7 +214,7 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>s0010</name>
+        <name>raj</name>
         <label>s0010</label>
         <locationX>490</locationX>
         <locationY>1514</locationY>
@@ -228,7 +228,7 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>s002</name>
+        <name>shekar</name>
         <label>s002</label>
         <locationX>490</locationX>
         <locationY>1190</locationY>
@@ -242,7 +242,7 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>s007</name>
+        <name>lets-go</name>
         <label>s007</label>
         <locationX>490</locationX>
         <locationY>1622</locationY>
@@ -270,7 +270,7 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>s1</name>
+        <name>sss1</name>
         <label>s1</label>
         <locationX>490</locationX>
         <locationY>350</locationY>

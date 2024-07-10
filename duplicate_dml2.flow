@@ -16,12 +16,6 @@
             <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
-    <processMetadataValues>
-        <name>OriginBuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
         <name>getRecordsElement</name>
@@ -62,22 +56,6 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>screen2</name>
-        <label>screen2</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>displaying</name>
-            <fieldText>&lt;p&gt;Heyey we found you {!getNameDeets.firstName}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

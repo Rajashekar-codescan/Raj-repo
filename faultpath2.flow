@@ -77,21 +77,8 @@
         </faultConnector>
         <inputReference>createnewrecord</inputReference>
     </recordCreates>
-    <recordCreates>
-        <name>record1</name>
-        <label>record1</label>
-        <locationX>264</locationX>
-        <locationY>878</locationY>
-        <connector>
-            <targetReference>loop1</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>S_02</targetReference>
-        </faultConnector>
-        <inputReference>createnewrecord</inputReference>
-    </recordCreates>
     <recordLookups>
-        <name>getrows1</name>
+        <name>get1</name>
         <label>getrows1</label>
         <locationX>176</locationX>
         <locationY>398</locationY>
