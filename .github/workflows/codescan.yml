@@ -19,7 +19,7 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar
       - name: Run Codescan On Push
         if: github.event_name == 'push'
-        uses: Rajashekar-codescan/codescan-scanner-action@github7
+        uses: codescan-io/codescan-scanner-action@test-node
         with:
           codeScanUrl: https://app.codescan.io/
           organization: test-org1
@@ -29,7 +29,7 @@ jobs:
           failOnRedQualityGate: false
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
-        uses: Rajashekar-codescan/codescan-scanner-action@github7
+        uses: codescan-io/codescan-scanner-action@test-node
         with:
           codeScanUrl: https://app.codescan.io/
           organization: test-org1
