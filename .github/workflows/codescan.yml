@@ -30,8 +30,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@test-node
         with: 
           scanChangedFilesOnly: true
-          organization: codescan-release-24-0-8
-          projectKey: pp2704-dreamhouse-Iwc
+          organization: test-org1
+          projectKey: test-Sf-data
           codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token }}
           generateSarifFile: true
@@ -40,8 +40,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@test-node
         with: 
           scanChangedFilesOnly: true
-          organization: codescan-release-24-0-8
-          projectKey: pp2704-dreamhouse-Iwc
+          organization: test-org1
+          projectKey: test-Sf-data
           codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token }}
           generateSarifFile: true
