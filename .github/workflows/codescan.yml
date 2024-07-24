@@ -1,9 +1,17 @@
 name: CI
 on:
   push:
-    branches: [master]
+    branches:
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
   pull_request:
-    branches: '*'
+    branches: 
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,24 +28,23 @@ jobs:
       - name: Run Codescan On Push
         if: github.event_name == 'push'
         uses: codescan-io/codescan-scanner-action@test-node
-        with:
-          codeScanUrl: https://app.codescan.io/
-          organization: test-org1
-          projectKey: test-Sf-data
+        with: 
+          scanChangedFilesOnly: true
+          organization: codescan-release-24-0-8
+          projectKey: pp2704-dreamhouse-Iwc
+          codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token }}
           generateSarifFile: true
-          failOnRedQualityGate: false
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
         uses: codescan-io/codescan-scanner-action@test-node
-        with:
-          codeScanUrl: https://app.codescan.io/
-          organization: test-org1
-          projectKey: test-Sf-data
+        with: 
+          scanChangedFilesOnly: true
+          organization: codescan-release-24-0-8
+          projectKey: pp2704-dreamhouse-Iwc
+          codeScanUrl: https://app.codescan.io
           login: ${{ secrets.codescan_token }}
           generateSarifFile: true
-          failOnRedQualityGate: false
-          scanChangedFilesOnly: true
           args: |
             sonar.pullrequest.branch=${{github.head_ref}}
             sonar.pullrequest.base=${{github.base_ref}}
@@ -46,3 +53,8 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: codescan.sarif
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: codescan.sarif
+          path: codescan.sarif 
