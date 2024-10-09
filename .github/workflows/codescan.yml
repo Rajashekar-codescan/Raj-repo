@@ -1,17 +1,9 @@
-name: CI
-on:
-  push:
-    branches:
-      - '*'
-    paths-ignore:
-      - src/test/java/**
-      - target/**
-  pull_request:
-    branches: 
-      - '*'
-    paths-ignore:
-      - src/test/java/**
-      - target/**
+name: CI 
+on: 
+  push: 
+    branches: [master] 
+  pull_request: 
+    branches: [master] 
 jobs: 
   build: 
     runs-on: ubuntu-latest 
