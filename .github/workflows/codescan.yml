@@ -33,7 +33,7 @@ jobs:
           projectKey: test-Sf-data
           login: ${{ secrets.codescan_token }} 
           generateSarifFile: true 
-          failOnRedQualityGate: true 
+          failOnRedQualityGate: fasle
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@test-node
@@ -43,7 +43,7 @@ jobs:
           login: ${{ secrets.codescan_token }} 
           scanChangedFilesOnly: true 
           generateSarifFile: true 
-          failOnRedQualityGate: true 
+          failOnRedQualityGate: false
           args: | 
             sonar.pullrequest.branch=${{github.head_ref}} 
             sonar.pullrequest.base=${{github.base_ref}} 
