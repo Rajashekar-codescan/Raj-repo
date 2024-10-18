@@ -19,19 +19,19 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar 
       - name: Run Codescan On Push 
         if: github.event_name == 'push' 
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@1.5
         with: 
           organization: test-org1 
-          projectKey: test-Sf-data 
+          projectKey: test-Sf-data
           login: ${{ secrets.codescan_token }} 
           generateSarifFile: true 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@1.5
         with: 
           organization: test-org1
-          projectKey: test-Sf-data 
+          projectKey: test-Sf-data
           login: ${{ secrets.codescan_token }} 
           scanChangedFilesOnly: true 
           generateSarifFile: true 
