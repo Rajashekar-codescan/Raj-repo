@@ -2,11 +2,14 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+ 
 trigger:
-- master
-
+- main
+ 
 pool:
+  vmImage: ubuntu-latest
+ 
+steps:
 - task: CodeScanCloudPrepare@1
   inputs:
     CodeScanCloud: 'app-ser'
@@ -16,17 +19,44 @@ pool:
     cliProjectKey: 'azure-dev2'
     cliProjectName: 'azure-dev2'
     cliSources: '.'
+  displayName: 'CodeScan Cloud Prepare'  
+ 
 - task: CodeScanCloudAnalyze@1
   inputs:
     jdkversion: 'JAVA_HOME_17_X64'
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+ 
 - task: CodeScanCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+ 
+- task: PowerShell@2
+  inputs:
+        targetType: 'inline'
+        script: |
+          $token = [System.Text.Encoding]::UTF8.GetBytes($env:CODESCAN_TOKEN + ":")
+          $base64 = [System.Convert]::ToBase64String($token)
+          $basicAuth = [string]::Format("Basic {0}", $base64)
+          $headers = @{ Authorization = $basicAuth }
+       
+          Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
+       
+          $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
+          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure-dev2&pullRequest={0}"
+       
+          if( !$Target)
+          {
+          $Target = "$env:BUILD_SOURCEBRANCH"
+          $Target = $Target.Replace('refs/heads/','')
+          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure-dev2&branch={0}"
+          }
+       
+          $URL = [string]::Format($URL, $Target)
+       
+          $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
+          $result | ConvertTo-Json | Write-Host
+        
+          if ($result.projectStatus.status -eq "OK") {
+          Write-Host "Quality Gate Succeeded"
+          }else{
+          throw "Quality Gate failed"
+          }
