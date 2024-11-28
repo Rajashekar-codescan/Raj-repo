@@ -40,7 +40,7 @@ steps:
              
                 Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
              
-                $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
+                $Target = "$env:SYSTEM_PULLRST_PULLREQUESTID"
                 $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&pullRequest={0}"
              
                 if( !$Target)
