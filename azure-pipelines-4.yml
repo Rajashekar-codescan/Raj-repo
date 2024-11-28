@@ -40,7 +40,7 @@ steps:
                 Write-Host "Authorization Header: $basicAuth"
 
              
-                Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
+                Write-Host "Pull Request ID:$($env:SYSTEM_PULLRE_PULLREQUESTID)"
              
                 $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
                 Write-Host "PULL REQUEST TARGET: $Target"
@@ -56,7 +56,7 @@ steps:
              
                 WRITE-HOST "URL PR IS: $URL"
                 $URL = [string]::Format($URL, $Target)
-                WRITE-HOST "URL IS: $URL"
+                WRITE-HOST "URL IS After: $URL"
              
                 $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
                 $result | ConvertTo-Json | Write-Host
