@@ -19,6 +19,7 @@ steps:
     cliProjectKey: 'azure3'
     cliProjectName: 'azure3'
     cliSources: '.'
+  displayName: 'CodeScan Cloud Prepare'  
 
 - task: CodeScanCloudAnalyze@1
   inputs:
