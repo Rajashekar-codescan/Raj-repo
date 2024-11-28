@@ -54,6 +54,7 @@ steps:
                 }
              
                 $URL = [string]::Format($URL, $Target)
+                WRITE-HOST "URL IS: $URL"
              
                 $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
                 $result | ConvertTo-Json | Write-Host
