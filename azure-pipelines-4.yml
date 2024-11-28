@@ -47,7 +47,7 @@ steps:
              
                 if( !$Target)
                 {
-                $Target = "$env:BUILSOURCEBRANCH"
+                $Target = "$env:BUILD_SOURCEBRANCH"
                 $Target = $Target.Replace('refs/heads/','')
                 $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
                 }
