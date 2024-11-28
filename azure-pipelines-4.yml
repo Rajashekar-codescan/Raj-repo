@@ -23,7 +23,7 @@ steps:
 
 - task: CodeScanCloudAnalyze@1
   inputs:
-    jdkversion: 'JAVA_HOME_17_X64'
+    jdkversion:  'JAVA_HOME_17_X64'
 
 - task: CodeScanCloudPublish@1
   inputs:
@@ -45,7 +45,7 @@ steps:
              
                 if( !$Target)
                 {
-                $Target = "$env:BUILD_SOURCEBRANCH"
+                $Target = "$env:BUILSOURCEBRANCH"
                 $Target = $Target.Replace('refs/heads/','')
                 $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
                 }
