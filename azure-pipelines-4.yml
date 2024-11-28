@@ -37,10 +37,12 @@ steps:
                 $base64 = [System.Convert]::ToBase64String($token)
                 $basicAuth = [string]::Format("Basic {0}", $base64)
                 $headers = @{ Authorization = $basicAuth }
+                Write-Host "Authorization Header: $basicAuth"
+
              
                 Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
              
-                $Target = "$env:SYSTEM_PULLRST_PULLREQUESTID"
+                $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
                 $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&pullRequest={0}"
              
                 if( !$Target)
