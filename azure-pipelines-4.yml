@@ -54,6 +54,7 @@ steps:
                 $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
                 }
              
+                WRITE-HOST "URL PR IS: $URL"
                 $URL = [string]::Format($URL, $Target)
                 WRITE-HOST "URL IS: $URL"
              
