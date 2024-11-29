@@ -1,4 +1,4 @@
-public void class b{
-public class v(){
+public class b{
+public void v(){
 }
 }
