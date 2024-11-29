@@ -40,7 +40,7 @@ steps:
                 Write-Host "Authorization Header: $basicAuth"
 
              
-                Write-Host "Pull Request ID:$($env:SYSTEM_PULLRE_PULLREQUESTID)"
+                Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
              
                 $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
                 Write-Host "PULL REQUEST TARGET: $Target"
