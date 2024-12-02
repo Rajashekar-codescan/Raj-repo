@@ -16,8 +16,8 @@ steps:
     organization: 'test-org1'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'Azure4'
-    cliProjectName: 'Azure4'
+    cliProjectKey: 'azure5'
+    cliProjectName: 'azure5'
     cliSources: '.'
   displayName: 'CodeScan Cloud Prepare'  
  
@@ -41,13 +41,13 @@ steps:
           Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
        
           $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
-          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&pullRequest={0}"
+          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure5&pullRequest={0}"
        
           if( !$Target)
           {
           $Target = "$env:BUILD_SOURCEBRANCH"
           $Target = $Target.Replace('refs/heads/','')
-          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
+          $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure5&branch={0}"
           }
        
           $URL = [string]::Format($URL, $Target)
