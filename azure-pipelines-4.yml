@@ -19,11 +19,11 @@ steps:
     cliProjectKey: 'azure4'
     cliProjectName: 'azure4'
     cliSources: '.'
-  displayName: 'CodeScan Cloud Prepare'  
+  displayName: 'CodeScan Cloud Prepare'    
 
 - task: CodeScanCloudAnalyze@1
   inputs:
-    jdkversion:  'JAVA_HOME_17_X64'
+    jdkversion: 'JAVA_HOME_17_X64'
 
 - task: CodeScanCloudPublish@1
   inputs:
@@ -33,36 +33,33 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $token = [System.Text.Encoding]::UTF8.GetBytes($env:CODESCAN_TOKEN + ":")
-                $base64 = [System.Convert]::ToBase64String($token)
-                $basicAuth = [string]::Format("Basic {0}", $base64)
-                $headers = @{ Authorization = $basicAuth }
-                Write-Host "Authorization Header: $basicAuth"
+      script: |
+            $token = [System.Text.Encoding]::UTF8.GetBytes($env:CODESCAN_TOKEN + ":")
+                      $base64 = [System.Convert]::ToBase64String($token)
+                      $basicAuth = [string]::Format("Basic {0}", $base64)
+                      $headers = @{ Authorization = $basicAuth }
+                   
+                      Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
+                   
+                      $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
+                      $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&pullRequest={0}"
+                      Write-Host "URL PR :$URL"
 
-             
-                Write-Host "Pull Request ID:$($env:SYSTEM_PULLREQUEST_PULLREQUESTID)"
-             
-                $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
-                Write-Host "PULL REQUEST TARGET: $Target"
-                $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&pullRequest={0}"
-                WRITE-HOST "URL PR IS: $URL"
+                      if( !$Target)
+                      {
+                      $Target = "$env:BUILD_SOURCEBRANCH"
+                      $Target = $Target.Replace('refs/heads/','')
+                      $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
+                      }
+                   
+                      $URL = [string]::Format($URL, $Target)
+                      Write-Host "URL is :$URL"
 
-                if( !$Target)
-                {
-                $Target = "$env:BUILD_SOURCEBRANCH"
-                $Target = $Target.Replace('refs/heads/','')
-                $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure4&branch={0}"
-                }
-             
-                WRITE-HOST "URL PR IS: $URL"
-                $URL = [string]::Format($URL, $Target)
-                WRITE-HOST "URL IS After: $URL"
-             
-                $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
-                $result | ConvertTo-Json | Write-Host
-              
-                if ($result.projectStatus.status -eq "OK") {
-                Write-Host "Quality Gate Succeeded"
-                }else{
-                throw "Quality Gate failed"
-                }
+                      $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
+                      $result | ConvertTo-Json | Write-Host
+                    
+                      if ($result.projectStatus.status -eq "OK") {
+                      Write-Host "Quality Gate Succeeded"
+                      }else{
+                      throw "Quality Gate failed"
+                      }
