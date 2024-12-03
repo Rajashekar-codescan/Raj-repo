@@ -42,7 +42,7 @@ steps:
        
           $Target = "$env:SYSTEM_PULLREQUEST_PULLREQUESTID"
           $URL = "https://app.codescan.io/api/qualitygates/project_status?projectKey=azure5&pullRequest={0}"
-       
+          Write-Host "URL PR is: $URL"
           if( !$Target)
           {
           $Target = "$env:BUILD_SOURCEBRANCH"
@@ -51,7 +51,8 @@ steps:
           }
        
           $URL = [string]::Format($URL, $Target)
-       
+          Write-Host "URL is: $URL"
+
           $result = Invoke-RestMethod -Method Get -Uri $URL  -Headers $headers
           $result | ConvertTo-Json | Write-Host
         
