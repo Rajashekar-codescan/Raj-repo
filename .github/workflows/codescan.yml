@@ -21,8 +21,8 @@ jobs:
         if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
-          organization: test-org1 
-          projectKey: test-Sf-data
+          organization: shekar-org1 
+          projectKey: Github-action
           login: ${{ secrets.codescan_token }} 
           generateSarifFile: true 
           failOnRedQualityGate: false 
@@ -30,8 +30,8 @@ jobs:
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
-          organization: test-org1
-          projectKey: test-Sf-data
+          organization: shekar-org1
+          projectKey: Github-action
           login: ${{ secrets.codescan_token }} 
           scanChangedFilesOnly: true 
           generateSarifFile: true 
