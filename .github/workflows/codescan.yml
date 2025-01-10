@@ -23,7 +23,7 @@ jobs:
         with: 
           organization: shekar-org1 
           projectKey: Github-action
-          login: ${{ secrets.codescan_token }} 
+          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9 
           generateSarifFile: true 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
@@ -32,7 +32,7 @@ jobs:
         with: 
           organization: shekar-org1
           projectKey: Github-action
-          login: ${{ secrets.codescan_token }} 
+          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
           scanChangedFilesOnly: true 
           generateSarifFile: true 
           failOnRedQualityGate: false
