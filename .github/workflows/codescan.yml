@@ -23,7 +23,7 @@ jobs:
         with: 
           organization: shekar-org1 
           projectKey: Github-action
-          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9 
+          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
           generateSarifFile: true 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
