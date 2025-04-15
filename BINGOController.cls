@@ -13,6 +13,7 @@
 global with sharing class BINGOController {
     
     public integer x {get; set;}
+    public integer xy {get; set;}
     
     private id myid;
     public List<User> bingos {get; private set;}
