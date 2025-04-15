@@ -22,8 +22,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://test.codescan.io
-          organization: shekar-org1 
-          projectKey: actions2
+          organization: api-test 
+          projectKey: 111abcd
           login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
           generateSarifFile: true 
           failOnRedQualityGate: false 
@@ -32,8 +32,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://test.codescan.io
-          organization: shekar-org1
-          projectKey: actions2
+          organization: api-test
+          projectKey: 111abcd
           login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
           scanChangedFilesOnly: true 
           generateSarifFile: true 
