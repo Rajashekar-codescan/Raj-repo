@@ -21,20 +21,20 @@ jobs:
         if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: api-test 
-          projectKey: 111abcd
-          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
+          codeScanUrl: https://app.codescan.io
+          organization: prod-raj1 
+          projectKey: fkk
+          login:  squ_5cffa5a667c7190d2e7c898d7ff83fcc87c34f00
           generateSarifFile: false 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: api-test
+          codeScanUrl: https://app.codescan.io
+          organization: fkk
           projectKey: 111abcd
-          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
+          login:  squ_5cffa5a667c7190d2e7c898d7ff83fcc87c34f00
           scanChangedFilesOnly: true 
           generateSarifFile: false 
           failOnRedQualityGate: false
