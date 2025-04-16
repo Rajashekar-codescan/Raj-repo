@@ -32,8 +32,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://app.codescan.io
-          organization: fkk
-          projectKey: 111abcd
+          organization: prod-raj1
+          projectKey: fkk
           login:  squ_5cffa5a667c7190d2e7c898d7ff83fcc87c34f00
           scanChangedFilesOnly: true 
           generateSarifFile: true 
