@@ -27,7 +27,7 @@ jobs:
           organization: prod-raj1 
           projectKey: fkk
           login:  squ_5cffa5a667c7190d2e7c898d7ff83fcc87c34f00
-          generateSarifFile: true 
+          generateSarifFile: false 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
@@ -38,7 +38,7 @@ jobs:
           projectKey: fkk
           login:  squ_5cffa5a667c7190d2e7c898d7ff83fcc87c34f00
           scanChangedFilesOnly: true 
-          generateSarifFile: true 
+          generateSarifFile: false 
           failOnRedQualityGate: false
           args: | 
             sonar.pullrequest.branch=${{github.head_ref}} 
