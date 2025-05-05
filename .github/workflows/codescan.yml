@@ -30,6 +30,13 @@ jobs:
                 ~/.sonar 
             key: ${{ runner.os }}-sonar 
             restore-keys: ${{ runner.os }}-sonar 
+      - name: Download SonarScanner CLI version 5.0.1
+        run: |
+          SCANNER_VERSION=5.0.1
+          curl -L -o sonar-scanner.zip "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SCANNER_VERSION-linux.zip"
+          unzip sonar-scanner.zip
+          echo "SONAR_SCANNER_HOME=$PWD/sonar-scanner-$SCANNER_VERSION-linux" >> $GITHUB_ENV
+          echo "$SONAR_SCANNER_HOME/bin" >> $GITHUB_PATH      
       - name: Run Codescan On Push 
         if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@1.6
