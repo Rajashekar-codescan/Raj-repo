@@ -34,7 +34,7 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar 
       - name: Run Codescan On Push 
         if: github.event_name == 'push' 
-        uses: codescan-io/codescan-scanner-action@cd6610
+        uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://app.codescan.io
           organization: prod-raj1 
@@ -43,7 +43,7 @@ jobs:
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@cd6610
+        uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://app.codescan.io
           organization: prod-raj1
