@@ -13,6 +13,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.14.1
         with:
+          distribution: 'temurin'
           java-version: 17
       - name: Cache files 
         uses: actions/cache@v4
@@ -28,8 +29,7 @@ jobs:
           codeScanUrl: https://app.codescan.io
           organization: prod-raj1 
           projectKey: fkk
-          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
-          generateSarifFile: true 
+          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e9
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
@@ -40,16 +40,11 @@ jobs:
           projectKey: fkk
           login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
           scanChangedFilesOnly: true 
-          generateSarifFile: true 
           failOnRedQualityGate: false
           args: | 
             sonar.pullrequest.branch=${{github.head_ref}} 
             sonar.pullrequest.base=${{github.base_ref}} 
             sonar.pullrequest.key=${{github.event.number}} 
-      - name: Upload SARIF file 
-        uses: github/codeql-action/upload-sarif@v3 
-        with: 
-            sarif_file: codescan.sarif 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
