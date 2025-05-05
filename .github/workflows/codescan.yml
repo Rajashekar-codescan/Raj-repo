@@ -1,11 +1,9 @@
 name: CI 
-env:  
-    SONAR_SCANNER_VERSION: 5.0.1.3006
 on: 
   push: 
-    branches: [master] 
+    branches: [actions] 
   pull_request: 
-    branches: [master] 
+    branches: [actions] 
 jobs: 
   build: 
     runs-on: ubuntu-latest 
@@ -21,24 +19,24 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar 
       - name: Run Codescan On Push 
         if: github.event_name == 'push' 
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@cd6610
         with: 
-          codeScanUrl: https://d990-103-88-103-89.ngrok-free.app
-          organization: default-organization 
-          projectKey: git-ssh
-          login:  squ_29a22012a7d6908b890488f3f469ceb7fd2cc138
-          generateSarifFile: false 
+          codeScanUrl: https://test.codescan.io
+          organization: shekar-org1 
+          projectKey: actions2
+          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
+          generateSarifFile: true 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@cd6610
         with: 
-          codeScanUrl: https://d990-103-88-103-89.ngrok-free.app
-          organization: default-organization
-          projectKey: git-ssh
-          login:  squ_29a22012a7d6908b890488f3f469ceb7fd2cc138
+          codeScanUrl: https://test.codescan.io
+          organization: shekar-org1
+          projectKey: actions2
+          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
           scanChangedFilesOnly: true 
-          generateSarifFile: false 
+          generateSarifFile: true 
           failOnRedQualityGate: false
           args: | 
             sonar.pullrequest.branch=${{github.head_ref}} 
