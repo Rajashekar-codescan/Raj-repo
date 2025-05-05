@@ -4,6 +4,8 @@ on:
     branches: [master] 
   pull_request: 
     branches: [master] 
+env: 
+  SONAR_SCANNER_VERSION: 5.0.1.3006
 jobs: 
   build: 
     runs-on: ubuntu-latest 
