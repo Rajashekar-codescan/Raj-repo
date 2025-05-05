@@ -21,20 +21,20 @@ jobs:
         if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@cd6610
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: shekar-org1 
-          projectKey: actions2
-          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
+          codeScanUrl: https://app.codescan.io
+          organization: prod-raj1 
+          projectKey: fkk
+          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
           generateSarifFile: true 
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@cd6610
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: shekar-org1
-          projectKey: actions2
-          login: squ_418a012ed6353d92a36a4137131353f1f84a7be9
+          codeScanUrl: https://app.codescan.io
+          organization: prod-raj1
+          projectKey: fkk
+          login: squ_c424848b4919802e7b0268e45b9fad9ba1d86e95
           scanChangedFilesOnly: true 
           generateSarifFile: true 
           failOnRedQualityGate: false
