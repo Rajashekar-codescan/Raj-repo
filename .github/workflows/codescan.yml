@@ -10,6 +10,10 @@ jobs:
     steps: 
       - name: Checkout repository 
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # or the version you need
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
