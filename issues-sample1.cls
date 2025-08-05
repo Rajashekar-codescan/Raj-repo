@@ -1,18 +1,1 @@
-public class issuessample {
-
-    public void calculatePrice() {
-        Integer total = 0;
-        Integer taxRate = 5;
-
-        for (Integer i = 0; i < 10; i++) {
-            total += i * 2;
-        }
-
-
-        updateInventory(total);
-    }
-
-    public void updateInventory(Integer count) {
-        System.debug('Updating inventory by: ' + count);
-    }
-}
+I don't see any Apex code in your message. The code block appears to be empty. Could you please provide the actual Apex code that needs to be fixed? I need to see the content with lines 5 and 11 to address the UnusedLocalVariable and CommentsRequired issues you mentioned.
