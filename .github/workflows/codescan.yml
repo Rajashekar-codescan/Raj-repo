@@ -34,19 +34,19 @@ jobs:
         if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@prerelease-test
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: shekar-org1
-          projectKey: ncino-sf
-          login: squ_67e11b2ad3cee4458f5c1b375f837701114976c0
+          codeScanUrl: https://preview.codescan.io
+          organization: shekar-preview
+          projectKey: replicate
+          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@prerelease-test
+        uses: codescan-io/codescan-scanner-action@1.6
         with: 
-          codeScanUrl: https://test.codescan.io
-          organization: shekar-org1
-          projectKey: ncino-sf
-          login: squ_67e11b2ad3cee4458f5c1b375f837701114976c0
+          codeScanUrl: https://preview.codescan.io
+          organization: shekar-preview
+          projectKey: replicate
+          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
           scanChangedFilesOnly: true 
           failOnRedQualityGate: false
           generateSarifFile: true
