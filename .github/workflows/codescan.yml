@@ -8,7 +8,7 @@ env:
   SONAR_SCANNER_VERSION: 5.0.1.3006
 jobs: 
   build: 
-    runs-on: ubuntu-latest 
+    runs-on: windows-latest 
     steps: 
       - name: Checkout repository 
         uses: actions/checkout@v4
