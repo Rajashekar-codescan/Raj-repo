@@ -43,7 +43,7 @@ jobs:
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@2.0
         with: 
           codeScanUrl: https://preview.codescan.io
           organization: shekar-preview
